@@ -14,7 +14,8 @@ class ProductController extends GetxController{
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List<ProductModel> listProducts = ProductModel.listFromJson(result);
-      print(listProducts);
+      productList = listProducts;
+      print(productList);
     } else {
       throw Exception('Unable to fetch products from the REST API');
     }
