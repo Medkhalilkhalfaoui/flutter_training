@@ -1,6 +1,9 @@
+import 'package:e_commerce_app/views/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../controllers/auth_controller.dart';
 import '../../controllers/product_controller.dart';
 import '../widgets/products_grid.dart';
 
@@ -13,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ProductController productController = Get.put(ProductController());
+  final AuthController authController = Get.put(AuthController());
 
   @override
   void initState() {
@@ -43,8 +47,11 @@ class _HomePageState extends State<HomePage> {
             // ),
             IconButton(
               icon: const Icon(Icons.logout,color: Colors.black,),
-              onPressed: () {
-                Navigator.pop(context);
+              onPressed: () async {
+                await authController.logout(context);
+
+
+
               },
             ),
             const SizedBox(width:10)

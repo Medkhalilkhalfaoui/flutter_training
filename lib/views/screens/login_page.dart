@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'home_page.dart';
+import '../../controllers/auth_controller.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
-  final TextEditingController login = TextEditingController();
-  final TextEditingController password = TextEditingController();
+
+  final AuthController authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -53,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                         FocusScope.of(context).unfocus();
                       },
                       cursorColor: const Color(0xFF757575),
-                      controller: login,
+                      controller: authController.login,
                       decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             // width: 0.0 produces a thin "hairline" border
@@ -77,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                       },
                       cursorColor: const Color(0xFF757575),
 
-                      controller: password,
+                      controller: authController.password,
                       decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             // width: 0.0 produces a thin "hairline" border
@@ -107,8 +108,7 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 30),
                     InkWell(
                       onTap: (){
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const HomePage()));
+                        authController.signIn(context);
                         // print(login.text);
                         // print(password.text);
                         // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(login.text,style: const TextStyle(color: Colors.white),)));
