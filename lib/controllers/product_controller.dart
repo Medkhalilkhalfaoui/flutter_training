@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ProductController extends GetxController{
-  List<ProductModel> productList =  <ProductModel>[].obs;
+  RxList<ProductModel> productList =  <ProductModel>[].obs;
 
 
 
@@ -14,7 +14,7 @@ class ProductController extends GetxController{
     if (response.statusCode == 200) {
       var result = jsonDecode(response.body);
       List<ProductModel> listProducts = ProductModel.listFromJson(result);
-      productList = listProducts;
+      productList.value = listProducts;
       print(productList);
     } else {
       throw Exception('Unable to fetch products from the REST API');

@@ -7,15 +7,15 @@ import '../../models/product.dart';
 import '../screens/product_detail_page.dart';
 
 class ProductGrid extends StatelessWidget {
-  const ProductGrid({super.key});
-  //final ProductController productController = Get.find();
+  ProductGrid({super.key});
+  final ProductController productController = Get.find();
 
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
+    return Obx(() => productController.productList.isNotEmpty?GridView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
-      itemCount: products.length,
+      itemCount: productController.productList.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 20,
@@ -23,12 +23,12 @@ class ProductGrid extends StatelessWidget {
         childAspectRatio: 0.75,
       ),
       itemBuilder: (context, index) => ItemCard(
-        product: products[index],
+        product: productController.productList[index],
         press: () => Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ProductDetailPage(
-              product: products[index],
+              product: productController.productList[index],
             ),
           ),
         ),
@@ -39,6 +39,6 @@ class ProductGrid extends StatelessWidget {
         // ),
 
       ),
-    );
+    ):const Center(child: CircularProgressIndicator(),));
   }
 }

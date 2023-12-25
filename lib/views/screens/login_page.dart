@@ -52,20 +52,42 @@ class LoginScreen extends StatelessWidget {
                       onTapOutside: (_){
                         FocusScope.of(context).unfocus();
                       },
+                      cursorColor: const Color(0xFF757575),
                       controller: login,
                       decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            // width: 0.0 produces a thin "hairline" border
+                            borderSide:BorderSide(color: Colors.grey, width: 0.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            // width: 0.0 produces a thin "hairline" border
+                            borderSide:BorderSide(color: Colors.black, width: 0.0),
+                          ),
+                          border: OutlineInputBorder(),
                           label: Text('Login',style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color:Color(0xffB81736),
                           ),)
                       ),
                     ),
+                    const SizedBox(height: 15),
                     TextFormField(
                       onTapOutside: (_){
                         FocusScope.of(context).unfocus();
                       },
+                      cursorColor: const Color(0xFF757575),
+
                       controller: password,
                       decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                            // width: 0.0 produces a thin "hairline" border
+                            borderSide:BorderSide(color: Colors.grey, width: 0.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            // width: 0.0 produces a thin "hairline" border
+                            borderSide:BorderSide(color: Colors.black, width: 0.0),
+                          ),
+                          border: OutlineInputBorder(),
                           suffixIcon: Icon(Icons.visibility_off,color: Colors.grey,),
                           label: Text('Password',style: TextStyle(
                             fontWeight: FontWeight.bold,

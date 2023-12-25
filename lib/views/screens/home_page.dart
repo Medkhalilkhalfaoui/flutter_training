@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
               child: Text("E-Commerce App", style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold)),
             ),
             // const Categories(),
-             const Expanded(
+             Expanded(
               child: ProductGrid(),
             ),
           ],
